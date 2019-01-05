@@ -27,8 +27,8 @@ def get_s3_key_name(timestamp):
 def upload_json_to_s3(content):
     client = boto3.client('s3')
     s3_key = get_s3_key_name(content['timestamp'])
-    #client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + str(uuid.uuid4()) + '_payload.json') 
-    client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + 'payload.json')
+    client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + str(uuid.uuid4()) + '_payload.json') 
+    #client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + 'payload.json')
 
 app = Flask(__name__)
 
