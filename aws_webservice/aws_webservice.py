@@ -8,7 +8,6 @@ import datetime
 import uuid
 
 def get_s3_key_name(timestamp):
-    print timestamp
     timestamp_formatted = datetime.datetime.strptime(timestamp, '%d/%m/%Y %H:%M:%S')
     timestamp_string = list(timestamp_formatted.strftime('%Y%m%d%H%M'))
     if int(timestamp_string[-1]) == 0:
