@@ -2,6 +2,7 @@ from .context import aws_webservice
 from flask import json
 import boto3
 from moto import mock_s3
+import uuid
 
 def test_upload():
     response = aws_webservice.app.test_client().post(
@@ -23,10 +24,12 @@ def test_upload_json_to_s3():
     # We need to create the bucket since this is all in Moto's 'virtual' AWS account
     conn.create_bucket(Bucket='ppanga-json')
 
-    data={'device': 'TemperatureSensor', 'timestamp': '25/01/2017 10:17:00', 'value': u'20'}
+    data = {'device': 'TemperatureSensor', 'timestamp': '25/01/2017 10:17:00', 'value': u'20'}
 
-    aws_webservice.upload_json_to_s3(data)
+    prefix = str(uuid.uuid4())
 
-    body = json.loads(conn.Object('ppanga-json', '201701251015/payload.json').get()['Body'].read().decode("utf-8"))
+    aws_webservice.upload_json_to_s3(data, prefix)
+
+    body = json.loads(conn.Object('ppanga-json', '201701251015/' + prefix + '_payload.json').get()['Body'].read().decode("utf-8"))
 
     assert body == data
