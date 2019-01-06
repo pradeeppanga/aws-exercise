@@ -46,7 +46,6 @@ def upload():
         try:
             content = request.get_json()
         except Exception as e:
-            print "Expection"
             status['status'] = "not uploaded"
             status['error'] = "not valid json" + ", " + str(e)
             return json.dumps(status)
