@@ -1,3 +1,6 @@
+# Author - Pradeep Panga
+# All rights reserved.
+
 from flask import Flask,request
 import json 
 import boto3
@@ -38,10 +41,8 @@ def upload():
         "status": "uploaded",
         "error": ""
         }
-    print "Pradeep"
-    print (request.is_json)
+#    print (request.is_json)
     if request.is_json:
-        print "inside if"
         try:
             content = request.get_json()
         except Exception as e:
@@ -49,13 +50,7 @@ def upload():
             status['status'] = "not uploaded"
             status['error'] = "not valid json" + ", " + str(e)
             return json.dumps(status)
-        print type(content)
-        print (content)
-        #print content['device']
         upload_json_to_s3(content)
-        #client = boto3.client('s3')
-        #client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key='201812301020/payload.json')
-        #return 'JSON posted'
         return json.dumps(status)
     else:
         status['status'] = "not uploaded"
