@@ -1,0 +1,82 @@
+from setuptools import setup, find_packages
+
+
+with open('README.md') as f:
+    readme = f.read()
+
+with open('LICENSE') as f:
+    license = f.read()
+
+install_requires = [
+        "asn1crypto==0.24.0",
+        "atomicwrites==1.2.1",
+        "attrs==18.2.0",
+        "aws-xray-sdk==0.95",
+        "backports.ssl-match-hostname==3.5.0.1",
+        "backports.tempfile==1.0",
+        "backports.weakref==1.0.post1",
+        "boto==2.49.0",
+        "boto3==1.9.71",
+        "botocore==1.12.71",
+        "certifi==2018.11.29",
+        "cffi==1.11.5",
+        "chardet==3.0.4",
+        "Click==7.0",
+        "cookies==2.2.1",
+        "cryptography==2.4.2",
+        "docker==3.6.0",
+        "docker-pycreds==0.4.0",
+        "docutils==0.14",
+        "ecdsa==0.13",
+        "enum34==1.1.6",
+        "Flask==1.0.2",
+        "funcsigs==1.0.2",
+        "future==0.17.1",
+        "futures==3.2.0",
+        "idna==2.8",
+        "ipaddress==1.0.22",
+        "itsdangerous==1.1.0",
+        "Jinja2==2.10",
+        "jmespath==0.9.3",
+        "jsondiff==1.1.1",
+        "jsonpickle==1.0",
+        "MarkupSafe==1.1.0",
+        "mock==2.0.0",
+        "more-itertools==5.0.0",
+        "moto==1.3.7",
+        "pathlib2==2.3.3",
+        "pbr==5.1.1",
+        "pluggy==0.8.0",
+        "py==1.7.0",
+        "pyaml==18.11.0",
+        "pycparser==2.19",
+        "pycryptodome==3.7.2",
+        "pytest==4.0.2",
+        "python-dateutil==2.7.5",
+        "python-jose==2.0.2",
+        "pytz==2018.7",
+        "PyYAML>=4.2b1",
+        "requests==2.21.0",
+        "responses==0.10.5",
+        "s3transfer==0.1.13",
+        "scandir==1.9.0",
+        "six==1.12.0",
+        "urllib3==1.24.1",
+        "websocket-client==0.54.0",
+        "Werkzeug==0.14.1",
+        "wrapt==1.10.11",
+        "xmltodict==0.11.0",
+]
+
+setup(
+    name='aws_webservice',
+    version='0.1.0',
+    description='AWS Webservice to upload a JSON payload to S3 bucket.',
+    long_description=readme,
+    author='Pradeep Panga',
+    author_email='pradeepkpanga@gmail.com',
+    url='https://github.com/pradeeppanga/aws-exercise',
+    license=license,
+    packages=find_packages(exclude=('tests')),
+    install_requires=install_requires
+)
