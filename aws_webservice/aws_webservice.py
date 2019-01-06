@@ -26,12 +26,10 @@ def get_s3_key_name(timestamp):
     timestamp_string = "".join(timestamp_string)
     return str(timestamp_string)
 
-
 def upload_json_to_s3(content, prefix):
     client = boto3.client('s3')
     s3_key = get_s3_key_name(content['timestamp'])
     client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + prefix + '_payload.json') 
-    #client.put_object(Body=json.dumps(content), Bucket='ppanga-json', Key=str(s3_key) + '/' + 'payload.json')
 
 app = Flask(__name__)
 
@@ -41,7 +39,6 @@ def upload():
         "status": "uploaded",
         "error": ""
         }
-#    print (request.is_json)
     if request.is_json:
         try:
             content = request.get_json()
