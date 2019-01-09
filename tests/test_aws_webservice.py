@@ -33,3 +33,6 @@ def test_upload_json_to_s3():
     body = json.loads(conn.Object('ppanga-json', '201701251015/' + prefix + '_payload.json').get()['Body'].read().decode("utf-8"))
 
     assert body == data
+
+def test_health_check():
+    assert aws_webservice.health_check() == "OK"
