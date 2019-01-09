@@ -22,7 +22,7 @@ def test_get_s3_key_name():
 def test_upload_json_to_s3():
     conn = boto3.resource('s3', region_name='us-east-1')
     # We need to create the bucket since this is all in Moto's 'virtual' AWS account
-    conn.create_bucket(Bucket='ppanga-json')
+    conn.create_bucket(Bucket='aws-webservice-panga')
 
     data = {'device': 'TemperatureSensor', 'timestamp': '25/01/2017 10:17:00', 'value': u'20'}
 
@@ -30,7 +30,7 @@ def test_upload_json_to_s3():
 
     aws_webservice.upload_json_to_s3(data, prefix)
 
-    body = json.loads(conn.Object('ppanga-json', '201701251015/' + prefix + '_payload.json').get()['Body'].read().decode("utf-8"))
+    body = json.loads(conn.Object('aws-webservice-panga', '201701251015/' + prefix + '_payload.json').get()['Body'].read().decode("utf-8"))
 
     assert body == data
 
