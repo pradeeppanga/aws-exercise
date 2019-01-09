@@ -8,6 +8,9 @@ import datetime
 import uuid
 
 def get_s3_key_name(timestamp):
+'''
+Generates the S3 key name to use, based on the timestamp information received from payload.
+'''
     timestamp_formatted = datetime.datetime.strptime(timestamp, '%d/%m/%Y %H:%M:%S')
     timestamp_string = list(timestamp_formatted.strftime('%Y%m%d%H%M'))
     if int(timestamp_string[-1]) == 0:
@@ -26,6 +29,9 @@ def get_s3_key_name(timestamp):
     return str(timestamp_string)
 
 def upload_json_to_s3(content, prefix):
+'''
+Uploads the JSON payload to S3 bucket.
+'''
     client = boto3.client('s3')
     s3_key = get_s3_key_name(content['timestamp'])
     client.put_object(Body=json.dumps(content), Bucket='aws-webservice-panga', Key=str(s3_key) + '/' + prefix + '_payload.json') 
@@ -34,6 +40,9 @@ app = Flask(__name__)
 
 @app.route("/upload", methods = ['POST'])
 def upload():
+'''
+Receives the POST from the client and calls the upload_json_to_s3() if the JSON is valid. 
+'''
     status = {
         "status": "uploaded",
         "error": ""
