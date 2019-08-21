@@ -63,7 +63,7 @@ install_requires = [
         "six==1.12.0",
         "urllib3==1.24.1",
         "websocket-client==0.54.0",
-        "Werkzeug==0.14.1",
+        "werkzeug ~> 0.15.3",
         "wrapt==1.10.11",
         "xmltodict==0.11.0",
 ]
