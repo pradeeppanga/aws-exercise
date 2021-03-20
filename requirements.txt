@@ -26,7 +26,7 @@ futures==3.1.1
 idna==2.8
 ipaddress==1.0.22
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 jmespath==0.9.3
 jsondiff==1.1.1
 jsonpickle==1.0
